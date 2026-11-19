@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1330 735">
+  <!-- Original ink and wash miniatures. The landscape is interpretive. -->
+  <defs>
+    <linearGradient id="hill" x2=".8" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#708d7e"/><stop offset="1" stop-color="#bfbea0"/></linearGradient>
+    <filter id="wash" x="-8%" y="-8%" width="116%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".085" numOctaves="2" result="p"/><feDisplacementMap in="SourceGraphic" in2="p" scale="2.4"/></filter>
+  </defs>
+  <g filter="url(#wash)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- An oblique reading of the balcony and arch in the Taihe photograph. -->
+    <g transform="translate(820 420) rotate(-5)" stroke="#655642">
+      <path d="M-12 75Q23 65 58 68T142 61L151 70 7 89Z" fill="#908c67" opacity=".32" stroke="none"/>
+      <path d="M6 15L98 5 128 19 125 60 5 73Z" fill="#d6bb90" stroke-width="2.4"/>
+      <path d="M-3 15L97 1 134 17 122 22 96 12 5 23Z" fill="#596053" stroke-width="2"/>
+      <path d="M18 50L18 32 29 30 29 48ZM43 47L43 28 54 26 54 45ZM75 44V32Q80 15 89 27V42Z" fill="#625b4a"/>
+      <path d="M107 43V29Q113 17 118 29V42" fill="#726954"/>
+      <path d="M0 57L97 44 126 51M0 70L97 58 126 64M4 59v10m9-11v9m10-11v9m10-10v8m10-10v9m10-10v9m10-10v9m10-11v9m10-10v9m12-10v9m10-8v9m10-7v8" fill="none" stroke-width="2.7"/>
+    </g>
+    <!-- Yishan karst, intentionally an imagined geological silhouette. -->
+    <g transform="translate(105 543)" stroke="none">
+      <path d="M0 79Q15 68 23 39T42 21Q53 24 61 51 69 42 72 27T91 15Q100 18 110 58L128 80Z" fill="#a0aea0" opacity=".75"/>
+      <path d="M-14 87Q7 75 15 56T33 48Q44 53 48 68 57 65 66 44T80 27Q91 24 101 60T130 80L153 93Z" fill="url(#hill)"/>
+      <path d="M13 75Q23 65 30 50M57 77Q72 58 76 39M85 45Q89 67 98 73" fill="none" stroke="#667b68" stroke-width="2"/>
+      <path d="M-12 91Q44 84 96 92T161 88M19 98Q56 92 87 98" fill="none" stroke="#729395" stroke-width="2.6"/>
+    </g>
+    <!-- Meitan: long eaves, open gallery and raised stone terrace. -->
+    <g transform="translate(208 170) rotate(-4)" stroke="#67543e">
+      <path d="M-9 72Q34 62 128 66L147 75 7 87Z" fill="#98916c" opacity=".42" stroke="none"/>
+      <path d="M4 36L119 28 120 64 4 74Z" fill="#b48c62" stroke-width="2"/>
+      <path d="M0 35Q21 31 27 16L93 11Q106 24 131 25L122 33 10 44Z" fill="#758176" stroke-width="3"/>
+      <path d="M14 32L106 23M30 20L89 15" fill="none" stroke="#c8bea2" stroke-width="2"/>
+      <path d="M15 45L110 37 110 58 15 67Z" fill="#6c6657"/>
+      <path d="M21 45v19m24-22v21m28-24v22m28-24v21" stroke="#c9916e" stroke-width="5"/>
+      <path d="M0 73L119 63 126 67 7 79ZM10 80L127 69" fill="#bfb59f" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

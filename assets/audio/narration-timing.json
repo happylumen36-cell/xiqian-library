@@ -1,0 +1,244 @@
+{
+ "finale": {
+  "duration": 5.336,
+  "revision": "662653b62576",
+  "cues": [
+   {
+    "v": "n",
+    "t": "你看，四盏灯都亮了。",
+    "src": null,
+    "start": 0.0,
+    "end": 2.231
+   },
+   {
+    "v": "n",
+    "t": "这面墙，现在可以开幕了。",
+    "src": null,
+    "start": 2.951,
+    "end": 5.336
+   }
+  ]
+ },
+ "longquan": {
+  "duration": 12.597,
+  "revision": "1bcdf4500462",
+  "cues": [
+   {
+    "v": "n",
+    "t": "看左下角，那几列白字。顺着读一读。",
+    "src": null,
+    "start": 0,
+    "end": 4.72,
+    "clip": "look",
+    "revision": "34e11ca31208"
+   },
+   {
+    "v": "n",
+    "t": "图书馆在哪儿，你能认出来吗？",
+    "src": null,
+    "start": 4.85,
+    "end": 8.224,
+    "clip": "point",
+    "revision": "7d8e53eca232"
+   },
+   {
+    "v": "q",
+    "t": "二楼正厅连着后面房屋为图书馆。",
+    "src": "韩松涛《浙江大学西迁时的图书馆》· 龙泉分校 甲②",
+    "start": 8.844,
+    "end": 12.597,
+    "clip": "source",
+    "revision": "f01dd08d7a83"
+   }
+  ]
+ },
+ "poster": {
+  "duration": 9.229,
+  "revision": "c51fc5868bce",
+  "cues": [
+   {
+    "v": "n",
+    "t": "来，我们先看看这几张老照片吧。",
+    "src": null,
+    "start": 0.0,
+    "end": 2.227
+   },
+   {
+    "v": "q",
+    "t": "抗战时期，浙江大学西迁办学，图书馆一路相随。",
+    "src": "韩松涛《浙江大学西迁时的图书馆》· 2017",
+    "start": 2.847,
+    "end": 9.229
+   }
+  ]
+ },
+ "enter": {
+  "duration": 17.241,
+  "revision": "afe92be836e5",
+  "cues": [
+   {
+    "v": "n",
+    "t": "看，左边的灯亮起来了。",
+    "src": null,
+    "start": 0.0,
+    "end": 4.874
+   },
+   {
+    "v": "q",
+    "t": "浙江大学于1937年11月开始西迁，先迁至西天目、建德，又迁至江西吉安、泰和。",
+    "src": "韩松涛《浙江大学西迁时的图书馆》· 泰和时期",
+    "start": 5.494,
+    "end": 17.241
+   }
+  ]
+ },
+ "brief": {
+  "duration": 10.381,
+  "revision": "8f6c0e17a516",
+  "cues": [
+   {
+    "v": "n",
+    "t": "明早就要开幕了。还有四件展品，灯还暗着。",
+    "src": null,
+    "start": 0.0,
+    "end": 5.428
+   },
+   {
+    "v": "n",
+    "t": "请你帮个忙。查一查材料，给它们各写一句展签。",
+    "src": null,
+    "start": 5.908,
+    "end": 10.381
+   }
+  ]
+ },
+ "hall": {
+  "duration": 4.302,
+  "revision": "660b414edac8",
+  "cues": [
+   {
+    "v": "n",
+    "t": "你想先看哪一幅？找找墙上还暗着的画框。",
+    "src": null,
+    "start": 0.0,
+    "end": 4.302
+   }
+  ]
+ },
+ "yishan": {
+  "duration": 9.395,
+  "revision": "40294394edbb",
+  "cues": [
+   {
+    "v": "n",
+    "t": "看看照片里的门柱。慢慢挪一挪，让它和眼前这根对上。",
+    "src": null,
+    "start": 0.0,
+    "end": 6.221,
+    "clip": "align",
+    "revision": "b6ae16d3cb2e"
+   },
+   {
+    "v": "q",
+    "t": "宜山图书馆设在文庙",
+    "src": "韩松涛《浙江大学西迁时的图书馆》· 甲①",
+    "start": 6.841,
+    "end": 9.395,
+    "clip": "source",
+    "revision": "534181cb0a80"
+   }
+  ]
+ },
+ "yishan-found": {
+  "duration": 4.147,
+  "revision": "d98cba62c08a",
+  "cues": [
+   {
+    "v": "n",
+    "t": "对，就是这里。先别动，再看一眼门柱。",
+    "src": null,
+    "start": 0.0,
+    "end": 4.147
+   }
+  ]
+ },
+ "archive": {
+  "duration": 5.994,
+  "revision": "59ebc58fcf85",
+  "cues": [
+   {
+    "v": "n",
+    "t": "先凭第一眼写一句。写好了，再翻开档案袋，看看哪些词有出处。",
+    "src": null,
+    "start": 0.0,
+    "end": 5.994
+   }
+  ]
+ },
+ "bombs": {
+  "duration": 7.887,
+  "revision": "95db1cf28c12",
+  "cues": [
+   {
+    "v": "n",
+    "t": "先看图顶的那行小字。读过题记，我们再来数这些编号。",
+    "src": null,
+    "start": 0.0,
+    "end": 5.674
+   },
+   {
+    "v": "q",
+    "t": "一百十八彈",
+    "src": "《宜山落弹分布图》甲① · 图顶总记节录",
+    "start": 6.294,
+    "end": 7.887
+   }
+  ]
+ },
+ "jianggongci": {
+  "duration": 8.368,
+  "revision": "537d935a06a5",
+  "cues": [
+   {
+    "v": "n",
+    "t": "先看看门匾。",
+    "src": null,
+    "start": 0,
+    "end": 1.12,
+    "clip": "plaque",
+    "revision": "18d0e4735f7f"
+   },
+   {
+    "v": "n",
+    "t": "门里的房间怎么摆？我们翻翻当时的记载。",
+    "src": null,
+    "start": 1.45,
+    "end": 4.554,
+    "clip": "inside",
+    "revision": "2b24c974f4af"
+   },
+   {
+    "v": "q",
+    "t": "江公祠整个都为图书馆所占",
+    "src": "韩松涛《浙江大学西迁时的图书馆》· 甲②",
+    "start": 5.174,
+    "end": 8.368,
+    "clip": "source",
+    "revision": "16af26b5d83b"
+   }
+  ]
+ },
+ "lit": {
+  "duration": 6.146,
+  "revision": "7c926447ccef",
+  "cues": [
+   {
+    "v": "n",
+    "t": "灯亮了。你写的那句话，现在就在展品旁边。",
+    "src": null,
+    "start": 0.0,
+    "end": 6.146
+   }
+  ]
+ }
+}

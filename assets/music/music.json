@@ -1,0 +1,93 @@
+{
+ "version": 1,
+ "tracks": {
+  "cover-theme": {
+   "file": "cover-theme.mp3",
+   "loop": true,
+   "duration": 41.75,
+   "loopEnd": 41.75,
+   "lufs": -21.0,
+   "truePeak": -9.1,
+   "gain": 1.0,
+   "source": "bgm-c/cover-theme-c.wav"
+  },
+  "hall-bed": {
+   "file": "hall-bed.mp3",
+   "loop": true,
+   "duration": 139.755,
+   "loopEnd": 139.755,
+   "lufs": -24.0,
+   "truePeak": -10.1,
+   "gain": 1.0,
+   "source": "bgm-a/hall-bed.wav"
+  },
+  "lit-sting": {
+   "file": "lit-sting.mp3",
+   "loop": false,
+   "duration": 5.5,
+   "lufs": -19.0,
+   "truePeak": -2.6,
+   "gain": 0.9,
+   "source": "synth/pentatonic-F"
+  },
+  "finale": {
+   "file": "finale.mp3",
+   "loop": false,
+   "duration": 33.046,
+   "lufs": -18.0,
+   "truePeak": -6.5,
+   "gain": 1.0,
+   "source": "bgm-a/finale.wav"
+  },
+  "site-yishan": {
+   "file": "site-yishan.mp3",
+   "loop": true,
+   "duration": 81.363,
+   "loopEnd": 81.363,
+   "lufs": -24.0,
+   "truePeak": -10.7,
+   "gain": 1.0,
+   "source": "bgm-b/site-yishan.wav"
+  },
+  "site-bombs": {
+   "file": "site-bombs.mp3",
+   "loop": true,
+   "duration": 57.5,
+   "loopEnd": 57.5,
+   "lufs": -25.0,
+   "truePeak": -15.0,
+   "gain": 1.0,
+   "source": "bgm-b/site-bombs.wav"
+  },
+  "site-jianggongci": {
+   "file": "site-jianggongci.mp3",
+   "loop": true,
+   "duration": 38.0,
+   "loopEnd": 38.0,
+   "lufs": -24.0,
+   "truePeak": -11.3,
+   "gain": 1.0,
+   "source": "bgm-b/site-jianggongci.wav"
+  },
+  "site-longquan": {
+   "file": "site-longquan.mp3",
+   "loop": true,
+   "duration": 80.5,
+   "loopEnd": 80.5,
+   "lufs": -24.0,
+   "truePeak": -12.9,
+   "gain": 1.0,
+   "source": "bgm-b/site-longquan.wav"
+  },
+  "archive": {
+   "file": "archive.mp3",
+   "loop": true,
+   "duration": 20.5,
+   "loopEnd": 20.5,
+   "lufs": -28.0,
+   "truePeak": -16.6,
+   "gain": 1.0,
+   "source": "bgm-b/archive.wav"
+  }
+ }
+}
