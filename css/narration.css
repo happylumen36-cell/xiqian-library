@@ -109,3 +109,13 @@ body:is([data-mode="site"],[data-mode="archive"]) :is(#siteUI,#archive) {bottom:
   body[data-mode="finale"] .narration-sub {top:calc(45px + env(safe-area-inset-top))}
   #sound-debug {font-size:10px}
 }
+
+/* 封面：浏览器不允许自动出声时的轻提示 */
+.sound-hint { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top)); z-index: 42; margin: 0; padding: 7px 16px; transform: translate(-50%, -6px);
+  border-radius: 999px; background: rgba(28,20,16,.78); color: #f3dfb4; font: 13px var(--print); letter-spacing: .14em; opacity: 0; pointer-events: none;
+  transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.sound-hint.show { opacity: 1; transform: translate(-50%, 0); animation: hint-breathe 2.6s 1s ease-in-out infinite; }
+@keyframes hint-breathe { 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .sound-hint.show { animation: none; } }
+/* 终场自动收场时淡出 */
+.opening-night.leaving { opacity: 0; transition: opacity .6s ease; }

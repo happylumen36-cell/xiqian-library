@@ -10,7 +10,6 @@
  *  - 浏览器要求手势后才能出声：首次有效点按或按键时解锁；之前请求的场景会在解锁后开始。
  * 用 Web Audio 的 AudioBuffer 循环，接缝无缝；内存里最多保留 3 段已解码的音乐。
  * 曲目清单在 assets/music/music.json，由 tools/make_music.py 生成。
- * ?sounddebug 在后台记录状态，?sounddebug=proof 才显示验收读数。
  */
 const KEY = 'xiqian-music-muted';
 const FADE = 2.5, DUCK = 0.35;
@@ -130,22 +129,18 @@ export function createSound({ narrator = null, base = 'assets/' } = {}) {
   button.onclick = () => api.toggle();
   paint();
 
-  /* 仅在显式验收视图显示读数。 */
-  const log = [];
-  function remember(name) { log.push(name); if (log.length > 4) log.shift(); }
-  const debug = new URLSearchParams(location.search);
-  if (debug.has('sounddebug')) {
-    const d = document.createElement('pre');
-    d.id = 'sound-debug';
-    d.hidden = debug.get('sounddebug') !== 'proof';
-    document.body.append(d);
-    setInterval(() => {
-      d.textContent = `audio  ${ctx ? ctx.state : '未解锁'}${muted ? ' · 音乐关' : ''}\nscene  ${current ? current.id + (current.pending ? '（载入中）' : '') : '—'}\nduck   ${ducked ? '讲解中，已压低' : '—'}\nsfx    ${log.join(' ') || '—'}`;
-    }, 200);
-  }
+  // 声音状态读数已按负责人要求移除；remember() 留作空操作，调用处不必改
+  function remember() {}
 
   const api = {
     button, controls,
+    /** 不等手势、尝试直接出声。浏览器允许自动播放时返回 true（例如回访、或站点已获自动播放许可）；否则保持静候第一次点按 */
+    async tryAutoplay() {
+      if (!ensure()) return false;
+      if (ctx.state !== 'running') await Promise.race([ctx.resume().catch(() => {}), new Promise(r => setTimeout(r, 500))]);
+      if (ctx.state !== 'running') return false;
+      syncScene(); return true;
+    },
     get muted() { return muted; },
     toggle() {
       muted = !muted; paint();

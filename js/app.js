@@ -125,19 +125,26 @@ async function boot() {
   const posterReady = poster.start();
   loading.done();
   const viewingPoster = () => mode === 'entry' && !cover.classList.contains('leaving') && !cover.querySelector('dialog[open]');
-  let coverGesture = 0;
-  // A first touch grants audio playback when the tap completes.
+  let coverGesture = 0, coverSpoken = false;
+  const speakCover = () => { coverSpoken = true; hideSoundHint(); return narrator.play('poster', { whileVisible: viewingPoster }); };
+  // 封面自动开讲：浏览器允许自动播放时，封面写完就直接放音乐和讲解；
+  // 不允许时（多数浏览器首次打开都不允许带声音的自动播放），轻触页面任意处即开始，推门除外。
   cover.addEventListener('click', async event => {
     const gesture = ++coverGesture;
     narrator.unlock();
     const control = event.target.closest('button, a, dialog');
-    if (control) {
-      if (control.matches('.pz-enter, .atlas-open')) narrator.stop();
-      return;
-    }
+    if (control?.matches('.pz-enter, .atlas-open')) { narrator.stop(); hideSoundHint(); return; }
+    if (control && coverSpoken) return;
     await posterReady;
-    if (gesture === coverGesture) narrator.play('poster', { whileVisible: viewingPoster });
+    if (gesture === coverGesture && !coverSpoken) speakCover();
   }, { capture: true });
+  posterReady.then(async () => {
+    if (!viewingPoster() || coverSpoken) return;
+    const [music, voice] = await Promise.all([sound.tryAutoplay(), canAutoplayVoice()]);
+    if (!viewingPoster() || coverSpoken) return;
+    if (voice) speakCover();
+    else if (!music) showSoundHint();
+  });
   // 海报播放时在后台搭好展厅；推门按钮底边的细光随贴图加载走满
   THREE.DefaultLoadingManager.onProgress = (url, loaded, total) => loading.hall(loaded / total);
   hall = await createHall({ renderer, exhibits: EXHIBITS, chapters: CHAPTERS, sources: SRC, status: statusOf, revealed: REVEALED, labelFor: id => progress.done[id] });
@@ -154,6 +161,21 @@ async function boot() {
   if (q.has('skip')) enter(poster);
   if (q.has('credits')) showCredits();
 }
+/** 不带手势能否直接播放有声音频：用一段极短的静音试播 */
+function canAutoplayVoice() {
+  try {
+    const a = new Audio('data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQIAAACAgA==');
+    return Promise.race([a.play().then(() => true, () => false), wait(600).then(() => false)]);
+  } catch (e) { return Promise.resolve(false); }
+}
+let soundHint = null;
+function showSoundHint() {
+  if (soundHint || mode !== 'entry') return;
+  soundHint = document.createElement('p'); soundHint.className = 'sound-hint'; soundHint.textContent = '点一下页面，开启讲解与音乐';
+  document.body.append(soundHint);
+  requestAnimationFrame(() => soundHint?.classList.add('show'));
+}
+function hideSoundHint() { if (!soundHint) return; const h = soundHint; soundHint = null; h.classList.remove('show'); setTimeout(() => h.remove(), 500); }
 function showCredits() {
   narrator.stop(); closeTaskList();
   return openCredits({ sites: SITES });
@@ -429,20 +451,34 @@ async function openingNight(alreadyWide, lastId) {
     <h2></h2><p class="night-sign"></p><button type="button" class="night-go" disabled>继续看展</button><button type="button" class="night-credits">参考来源与致谢</button></article>`;
   document.body.append(ending);
   const close = ending.querySelector('.night-go');
-  ending.querySelector('.night-credits').onclick = () => openCredits({ sites: SITES, onClose: () => close.focus({ preventScroll: true }) });
+  let creditsOpen = false;
+  ending.querySelector('.night-credits').onclick = () => { creditsOpen = true; openCredits({ sites: SITES, onClose: () => { creditsOpen = false; close.focus({ preventScroll: true }); } }); };
   const dismissed = new Promise(resolve => close.onclick = resolve);
   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   ending.classList.add('lit');
   sound.sting('finale', { exclusive: true });
-  narrator.play('finale', { once: false, whileVisible: () => ending.isConnected && mode === 'finale' });
+  const speech = narrator.play('finale', { once: false, whileVisible: () => ending.isConnected && mode === 'finale' });
   sound.sfx('brush', { gain: 0.8 });
   await brushWrite(ending.querySelector('h2'), GUIDE.hall.finaleTitle, {duration:1700});
   ending.querySelector('.night-sign').textContent = GUIDE.hall.signature;
   sound.sfx('stamp'); ending.classList.add('signed'); close.disabled=false; close.focus({preventScroll:true});
-  await dismissed;
+  // 不必点“继续看展”：讲解说完、落款停留几秒后自动收场（查看来源页时等它关上）
+  const auto = (async () => {
+    await Promise.race([speech || wait(0), wait(9000)]);
+    await wait(5000);
+    while (creditsOpen) await wait(400);
+  })();
+  await Promise.race([dismissed, auto]);
   finale.end(); narrator.stop(); sound.scene('hall-bed');
-  ending.remove(); hall.leavePanorama(); setMode('hall');
-  if (lastId) focusExhibit(DARK.find(ex=>ex.id===lastId));
+  ending.classList.add('leaving'); await wait(600);
+  ending.remove(); setMode('hall'); markChapter(-1);
+  // 收场后停在整面展墙的全景镜头；观众第一次拖动、滚轮、按键或点章节时，再回到平常的浏览镜头
+  const release = e => {
+    if (e.target?.closest?.('.narration-toggle, .tracker, #taskList, .credits')) return;
+    ['pointerdown', 'wheel', 'keydown'].forEach(t => removeEventListener(t, release, true));
+    if (hall.panoramaPhase === 'held') hall.leavePanorama();
+  };
+  ['pointerdown', 'wheel', 'keydown'].forEach(t => addEventListener(t, release, true));
   note(GUIDE.hall.allLit,{ms:6500});
 }
 window.__museum = { get site() { return site; }, get archive() { return archive; }, get hall() { return hall; }, progress, showCard, openSite, waitForNarration: narrator.waitFor };
